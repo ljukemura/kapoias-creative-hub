@@ -1,23 +1,17 @@
 import { Article, Project } from '@/data/sampleData';
 
-// Função para carregar artigos dos arquivos markdown
+// Função para carregar artigos - para blog estático, importa diretamente
 export async function loadArticles(): Promise<Article[]> {
-  // Para um blog estático, os artigos seriam carregados em build time
-  // Por enquanto, retornamos os dados de exemplo
   const articles = await import('@/data/sampleData');
   return articles.sampleArticles;
 }
 
-// Função para carregar projetos do arquivo JSON
+// Função para carregar projetos - para blog estático, importa diretamente  
 export async function loadProjects(): Promise<Project[]> {
   try {
-    const response = await fetch('/src/data/projects/projects.json');
-    if (!response.ok) {
-      // Fallback para dados de exemplo se o arquivo não existir
-      const { sampleProjects } = await import('@/data/sampleData');
-      return sampleProjects;
-    }
-    return await response.json();
+    // Importa diretamente o arquivo JSON para build estático
+    const projects = await import('@/data/projects/projects.json');
+    return projects.default || projects;
   } catch (error) {
     console.warn('Erro ao carregar projetos, usando dados de exemplo:', error);
     const { sampleProjects } = await import('@/data/sampleData');
@@ -28,12 +22,14 @@ export async function loadProjects(): Promise<Project[]> {
 // Função para carregar conteúdo de artigo específico
 export async function loadArticleContent(slug: string): Promise<string | null> {
   try {
-    // Em um blog estático real, isso carregaria o arquivo markdown
-    const response = await fetch(`/src/data/articles/${slug}.md`);
-    if (!response.ok) return null;
-    return await response.text();
+    // Para build estático, importa diretamente o arquivo markdown
+    const content = await import(`@/data/articles/${slug}.md?raw`);
+    return content.default;
   } catch (error) {
     console.warn('Erro ao carregar artigo:', error);
-    return null;
+    // Fallback para conteúdo dos dados de exemplo
+    const { sampleArticles } = await import('@/data/sampleData');
+    const article = sampleArticles.find(a => a.slug === slug);
+    return article?.content.pt || null;
   }
 }

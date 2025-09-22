@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, Star } from 'lucide-react';
-import { sampleProjects } from '@/data/sampleData';
+import { loadProjects } from '@/utils/contentLoader';
 
 const Projects = () => {
   const { t, language, theme } = useApp();
+  const [projects, setProjects] = useState<any[]>([]);
 
-  const featuredProjects = sampleProjects.filter(project => project.featured);
-  const otherProjects = sampleProjects.filter(project => !project.featured);
+  React.useEffect(() => {
+    loadProjects().then(setProjects);
+  }, []);
+
+  const featuredProjects = projects.filter(project => project.featured);
+  const otherProjects = projects.filter(project => !project.featured);
 
   return (
     <div className="min-h-screen py-12 px-4">

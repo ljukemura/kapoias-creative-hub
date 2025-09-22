@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: mode === "development" ? "/" : "/kapoias-creative-hub/",
+  base: "/",
   build: {
     outDir: "dist",
     assetsDir: "assets",

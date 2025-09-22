@@ -5,16 +5,21 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search, Calendar, ArrowRight } from 'lucide-react';
-import { sampleArticles } from '@/data/sampleData';
+import { loadArticles } from '@/utils/contentLoader';
 
 const Articles = () => {
   const { t, language, theme } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
+  const [articles, setArticles] = useState<any[]>([]);
+
+  React.useEffect(() => {
+    loadArticles().then(setArticles);
+  }, []);
 
   const filteredArticles = useMemo(() => {
-    if (!searchTerm) return sampleArticles;
+    if (!searchTerm) return articles;
     
-    return sampleArticles.filter(article => {
+    return articles.filter(article => {
       const title = article.title[language].toLowerCase();
       const summary = article.summary[language].toLowerCase();
       const search = searchTerm.toLowerCase();
@@ -22,7 +27,7 @@ const Articles = () => {
       return title.includes(search) || summary.includes(search) || 
              article.tags.some(tag => tag.toLowerCase().includes(search));
     });
-  }, [searchTerm, language]);
+  }, [searchTerm, language, articles]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

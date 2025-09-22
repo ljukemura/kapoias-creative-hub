@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useApp } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { sampleArticles } from '@/data/sampleData';
+import { loadArticles } from '@/utils/contentLoader';
 import ReactMarkdown from 'react-markdown';
 
 const ArticleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t, language, theme } = useApp();
+  const [article, setArticle] = useState<any>(null);
 
-  const article = sampleArticles.find(a => a.slug === slug);
+  React.useEffect(() => {
+    loadArticles().then(articles => {
+      const foundArticle = articles.find(a => a.slug === slug);
+      setArticle(foundArticle);
+    });
+  }, [slug]);
 
   if (!article) {
     return <Navigate to="/articles" replace />;
