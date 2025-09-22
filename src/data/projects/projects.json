@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "title": "Data Pipeline Automation",
+    "description": {
+      "pt": "Sistema automatizado para processamento e análise de grandes volumes de dados usando Apache Airflow e Python.",
+      "en": "Automated system for processing and analyzing large volumes of data using Apache Airflow and Python."
+    },
+    "githubUrl": "https://github.com/kapoia/data-pipeline",
+    "tags": ["Python", "Apache Airflow", "ETL", "Data Engineering"],
+    "featured": true
+  },
+  {
+    "id": "2",
+    "title": "Sentiment Analysis API",
+    "description": {
+      "pt": "API REST para análise de sentimentos em tempo real usando FastAPI e modelos de machine learning.",
+      "en": "REST API for real-time sentiment analysis using FastAPI and machine learning models."
+    },
+    "githubUrl": "https://github.com/kapoia/sentiment-api",
+    "tags": ["FastAPI", "Machine Learning", "NLP", "Docker"],
+    "featured": true
+  },
+  {
+    "id": "3",
+    "title": "Interactive Sales Dashboard",
+    "description": {
+      "pt": "Dashboard interativo para visualização de dados de vendas construído com Streamlit e Plotly.",
+      "en": "Interactive dashboard for sales data visualization built with Streamlit and Plotly."
+    },
+    "githubUrl": "https://github.com/kapoia/sales-dashboard",
+    "tags": ["Streamlit", "Plotly", "Data Visualization", "Business Intelligence"],
+    "featured": false
+  },
+  {
+    "id": "4",
+    "title": "Web Scraping Toolkit",
+    "description": {
+      "pt": "Conjunto de ferramentas para web scraping ético e eficiente usando Python e Scrapy.",
+      "en": "Toolkit for ethical and efficient web scraping using Python and Scrapy."
+    },
+    "githubUrl": "https://github.com/kapoia/scraping-toolkit",
+    "tags": ["Python", "Scrapy", "Web Scraping", "Data Collection"],
+    "featured": false
+  },
+  {
+    "id": "5",
+    "title": "Time Series Forecasting",
+    "description": {
+      "pt": "Modelos de previsão de séries temporais para análise de tendências e sazonalidade.",
+      "en": "Time series forecasting models for trend and seasonality analysis."
+    },
+    "githubUrl": "https://github.com/kapoia/time-series-forecast",
+    "tags": ["Python", "Time Series", "Forecasting", "Statistics"],
+    "featured": true
+  }
+]

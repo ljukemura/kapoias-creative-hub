@@ -1,73 +1,113 @@
-# Welcome to your Lovable project
+# Kapoia's Blog
 
-## Project info
+Um blog pessoal estático construído com React, Vite e Tailwind CSS, otimizado para GitHub Pages.
 
-**URL**: https://lovable.dev/projects/3624917a-7e0a-465a-a25c-086de62b9044
+## 🚀 Deploy no GitHub Pages
 
-## How can I edit this code?
+### Configuração Automática
+1. Faça fork deste repositório
+2. Vá em Settings > Pages
+3. Selecione "GitHub Actions" como source
+4. O deploy será automático a cada push na branch main
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/3624917a-7e0a-465a-a25c-086de62b9044) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Build Local
+```bash
+npm install
+npm run build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 📝 Adicionando Conteúdo
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Artigos
+Para adicionar um novo artigo:
 
-**Use GitHub Codespaces**
+1. Crie um arquivo `.md` em `src/data/articles/`
+2. Use o formato:
+```markdown
+---
+id: 'unique-id'
+title:
+  pt: 'Título em Português'
+  en: 'Title in English'
+summary:
+  pt: 'Resumo em português'
+  en: 'Summary in english'
+date: '2024-MM-DD'
+tags: ['tag1', 'tag2']
+slug: 'url-friendly-name'
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Conteúdo do artigo em markdown
 
-## What technologies are used for this project?
+Conteúdo em português aqui...
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+# Article content in markdown
+
+English content here...
+```
+
+3. Adicione o artigo ao arquivo `src/data/sampleData.ts`
+
+### Projetos
+Para adicionar projetos, edite o arquivo `src/data/projects/projects.json`:
+
+```json
+{
+  "id": "unique-id",
+  "title": "Project Title", 
+  "description": {
+    "pt": "Descrição em português",
+    "en": "Description in English"
+  },
+  "githubUrl": "https://github.com/user/repo",
+  "tags": ["tag1", "tag2"],
+  "featured": true
+}
+```
+
+## 🎨 Personalização
+
+### Temas
+- **Claro**: Tons naturais (bege, madeira)
+- **Escuro**: Inspirado no Matrix (verde neon, preto)
+
+Edite `src/index.css` e `tailwind.config.ts` para personalizar cores.
+
+### Configuração
+- Informações pessoais: `src/pages/About.tsx`
+- Navegação: `src/components/Navigation.tsx`
+- Contexto global: `src/contexts/AppContext.tsx`
+
+## 🔧 Estrutura do Projeto
+
+```
+src/
+├── components/         # Componentes React
+├── data/              
+│   ├── articles/      # Artigos em Markdown
+│   └── projects/      # Projetos em JSON
+├── pages/             # Páginas principais
+├── contexts/          # Context API
+└── utils/             # Utilitários
+```
+
+## 🌐 Recursos
+
+- ✅ Suporte bilíngue (PT/EN)
+- ✅ Tema claro/escuro
+- ✅ Busca em artigos
+- ✅ Design responsivo
+- ✅ SEO otimizado
+- ✅ GitHub Pages ready
+
+## 📱 Tecnologias
+
+- React 18
+- TypeScript  
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/3624917a-7e0a-465a-a25c-086de62b9044) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Vite
+- React Router
+- Lucide Icons
