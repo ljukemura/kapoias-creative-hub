@@ -1,0 +1,7 @@
+# Pasta para imagens dos artigos
+
+Adicione suas imagens aqui e referencie nos arquivos markdown como:
+
+```markdown
+![Descrição da imagem](../images/nome-da-imagem.png)
+```

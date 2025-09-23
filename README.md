@@ -22,34 +22,38 @@ npm run preview
 ### Artigos
 Para adicionar um novo artigo:
 
-1. Crie um arquivo `.md` em `src/data/articles/`
-2. Use o formato:
-```markdown
----
-id: 'unique-id'
-title:
-  pt: 'Título em Português'
-  en: 'Title in English'
-summary:
-  pt: 'Resumo em português'
-  en: 'Summary in english'
-date: '2024-MM-DD'
-tags: ['tag1', 'tag2']
-slug: 'url-friendly-name'
----
-
-# Conteúdo do artigo em markdown
-
-Conteúdo em português aqui...
-
----
-
-# Article content in markdown
-
-English content here...
+#### Método Automático (Recomendado)
+```bash
+node scripts/new-article.js "Título em Português" "Title in English"
 ```
 
-3. Adicione o artigo ao arquivo `src/data/sampleData.ts`
+#### Método Manual
+1. Crie os arquivos separados por idioma:
+   - `src/data/articles/pt/seu-slug.md` (versão portuguesa)
+   - `src/data/articles/en/seu-slug.md` (versão inglesa)
+
+2. Formato dos arquivos:
+```markdown
+# Título do Artigo
+
+Conteúdo do artigo em markdown...
+
+## Seção de Exemplo
+
+### Código
+\`\`\`python
+# Seu código aqui
+\`\`\`
+
+### Imagens
+![Descrição](../images/sua-imagem.png)
+```
+
+3. Para imagens:
+   - Coloque em `src/data/articles/images/`
+   - Referencie como `../images/nome-da-imagem.png`
+
+4. Adicione o artigo ao arquivo `src/data/sampleData.ts`
 
 ### Projetos
 Para adicionar projetos, edite o arquivo `src/data/projects/projects.json`:

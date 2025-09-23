@@ -19,17 +19,17 @@ export async function loadProjects(): Promise<Project[]> {
   }
 }
 
-// Função para carregar conteúdo de artigo específico
-export async function loadArticleContent(slug: string): Promise<string | null> {
+// Função para carregar conteúdo de artigo específico por idioma
+export async function loadArticleContent(slug: string, language: string = 'pt'): Promise<string | null> {
   try {
-    // Para build estático, importa diretamente o arquivo markdown
-    const content = await import(`@/data/articles/${slug}.md?raw`);
+    // Para build estático, importa diretamente o arquivo markdown por idioma
+    const content = await import(`@/data/articles/${language}/${slug}.md?raw`);
     return content.default;
   } catch (error) {
-    console.warn('Erro ao carregar artigo:', error);
+    console.warn(`Erro ao carregar artigo ${slug} em ${language}:`, error);
     // Fallback para conteúdo dos dados de exemplo
     const { sampleArticles } = await import('@/data/sampleData');
     const article = sampleArticles.find(a => a.slug === slug);
-    return article?.content.pt || null;
+    return article?.content[language as keyof typeof article.content] || null;
   }
 }

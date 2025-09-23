@@ -4,20 +4,29 @@ import { useApp } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { loadArticles } from '@/utils/contentLoader';
+import { loadArticles, loadArticleContent } from '@/utils/contentLoader';
 import ReactMarkdown from 'react-markdown';
 
 const ArticleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t, language, theme } = useApp();
   const [article, setArticle] = useState<any>(null);
+  const [content, setContent] = useState<string>('');
 
   React.useEffect(() => {
-    loadArticles().then(articles => {
+    const loadArticleData = async () => {
+      const articles = await loadArticles();
       const foundArticle = articles.find(a => a.slug === slug);
       setArticle(foundArticle);
-    });
-  }, [slug]);
+      
+      if (foundArticle) {
+        const articleContent = await loadArticleContent(slug!, language);
+        setContent(articleContent || foundArticle.content[language]);
+      }
+    };
+    
+    loadArticleData();
+  }, [slug, language]);
 
   if (!article) {
     return <Navigate to="/articles" replace />;
@@ -62,7 +71,7 @@ const ArticleDetail = () => {
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               <span>
-                {estimateReadingTime(article.content[language])} min{' '}
+                {estimateReadingTime(content || article.content[language])} min{' '}
                 {language === 'pt' ? 'de leitura' : 'read'}
               </span>
             </div>
@@ -116,7 +125,7 @@ const ArticleDetail = () => {
                 ),
               }}
             >
-              {article.content[language]}
+              {content || article.content[language]}
             </ReactMarkdown>
           </div>
         </div>

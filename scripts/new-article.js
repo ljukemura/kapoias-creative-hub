@@ -24,20 +24,7 @@ function createNewArticle() {
   const today = new Date().toISOString().split('T')[0];
   const id = Date.now().toString();
 
-  const template = `---
-id: '${id}'
-title:
-  pt: '${titlePt}'
-  en: '${titleEn}'
-summary:
-  pt: 'Adicione aqui um resumo em português'
-  en: 'Add here a summary in English'
-date: '${today}'
-tags: ['tag1', 'tag2']
-slug: '${slug}'
----
-
-# ${titlePt}
+  const templatePt = `# ${titlePt}
 
 Escreva aqui o conteúdo do seu artigo em português...
 
@@ -45,25 +32,63 @@ Escreva aqui o conteúdo do seu artigo em português...
 
 Conteúdo da seção...
 
----
+### Código de Exemplo
 
-# ${titleEn}
+\`\`\`python
+# Seu código aqui
+print("Olá, mundo!")
+\`\`\`
+
+## Imagens
+
+Para adicionar imagens, coloque-as na pasta \`src/data/articles/images/\` e referencie como:
+
+![Descrição da imagem](../images/nome-da-imagem.png)
+`;
+
+  const templateEn = `# ${titleEn}
 
 Write here your article content in English...
 
 ## Example Section
 
 Section content...
+
+### Code Example
+
+\`\`\`python
+# Your code here
+print("Hello, world!")
+\`\`\`
+
+## Images
+
+To add images, place them in the \`src/data/articles/images/\` folder and reference like:
+
+![Image description](../images/image-name.png)
 `;
 
-  const filePath = path.join(__dirname, '..', 'src', 'data', 'articles', `${slug}.md`);
+  // Cria as pastas se não existirem
+  const articlesDir = path.join(__dirname, '..', 'src', 'data', 'articles');
+  const ptDir = path.join(articlesDir, 'pt');
+  const enDir = path.join(articlesDir, 'en');
   
-  fs.writeFileSync(filePath, template);
+  if (!fs.existsSync(ptDir)) fs.mkdirSync(ptDir, { recursive: true });
+  if (!fs.existsSync(enDir)) fs.mkdirSync(enDir, { recursive: true });
+
+  const filePathPt = path.join(ptDir, `${slug}.md`);
+  const filePathEn = path.join(enDir, `${slug}.md`);
   
-  console.log(`✅ Artigo criado: ${filePath}`);
+  fs.writeFileSync(filePathPt, templatePt);
+  fs.writeFileSync(filePathEn, templateEn);
+  
+  console.log(`✅ Artigos criados:`);
+  console.log(`   PT: ${filePathPt}`);
+  console.log(`   EN: ${filePathEn}`);
   console.log(`📝 Lembre-se de adicionar o artigo em src/data/sampleData.ts`);
   console.log(`🏷️ ID do artigo: ${id}`);
   console.log(`🔗 Slug: ${slug}`);
+  console.log(`🖼️  Para imagens, use a pasta: src/data/articles/images/`);
 }
 
 createNewArticle();
