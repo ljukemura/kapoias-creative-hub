@@ -15,21 +15,38 @@ const ArticleDetail = () => {
 
   React.useEffect(() => {
     const loadArticleData = async () => {
-      const articles = await loadArticles();
-      const foundArticle = articles.find(a => a.slug === slug);
-      setArticle(foundArticle);
-      
-      if (foundArticle) {
-        const articleContent = await loadArticleContent(slug!, language);
-        setContent(articleContent || foundArticle.content[language]);
+      try {
+        const articles = await loadArticles();
+        const foundArticle = articles.find(a => a.slug === slug);
+        
+        if (foundArticle) {
+          setArticle(foundArticle);
+          const articleContent = await loadArticleContent(slug!, language);
+          setContent(articleContent || foundArticle.content[language]);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar artigo:', error);
       }
     };
     
-    loadArticleData();
+    if (slug) {
+      loadArticleData();
+    }
   }, [slug, language]);
 
-  if (!article) {
+  if (!slug) {
     return <Navigate to="/articles" replace />;
+  }
+
+  if (!article) {
+    return (
+      <div className="min-h-screen py-12 px-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">📄</div>
+          <h3 className="text-xl font-semibold mb-2">Carregando artigo...</h3>
+        </div>
+      </div>
+    );
   }
 
   const formatDate = (dateString: string) => {
