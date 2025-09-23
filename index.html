@@ -19,6 +19,32 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        const redirectPath = sessionStorage.getItem("spa_redirect");
+        if (!redirectPath) {
+          return;
+        }
+
+        sessionStorage.removeItem("spa_redirect");
+
+        const base = "%BASE_URL%".replace(/\/$/, "");
+
+        try {
+          const url = new URL(redirectPath, window.location.origin);
+          let pathname = url.pathname;
+
+          if (base && pathname.startsWith(base)) {
+            pathname = pathname.slice(base.length);
+          }
+
+          const newPath = `${base}${pathname}${url.search}${url.hash}`;
+          window.history.replaceState(null, "", newPath || "/");
+        } catch (error) {
+          console.error("SPA redirect failed", error);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
