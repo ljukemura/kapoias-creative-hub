@@ -1,4 +1,4 @@
-# Kapoia's Blog
+# Kapoia's Blog depois pedir para refazr o readme
 
 Um blog pessoal estático construído com React, Vite e Tailwind CSS, otimizado para GitHub Pages.
 
@@ -111,3 +111,4 @@ src/
 - Vite
 - React Router
 - Lucide Icons
+
