@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, Github, Star } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { ExternalLink, Github, Star, Search } from 'lucide-react';
 import { loadProjects } from '@/utils/contentLoader';
 
 const Projects = () => {
   const { t, language, theme } = useApp();
   const [projects, setProjects] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   React.useEffect(() => {
     loadProjects().then(setProjects);
   }, []);
 
-  const featuredProjects = projects.filter(project => project.featured);
-  const otherProjects = projects.filter(project => !project.featured);
+  // Filtrar projetos baseado no termo de pesquisa
+  const filteredProjects = useMemo(() => {
+    if (!searchTerm.trim()) return projects;
+    
+    return projects.filter(project => {
+      const searchLower = searchTerm.toLowerCase();
+      const titleMatch = project.title.toLowerCase().includes(searchLower);
+      const descriptionMatch = project.description[language]?.toLowerCase().includes(searchLower);
+      const tagsMatch = project.tags.some(tag => tag.toLowerCase().includes(searchLower));
+      
+      return titleMatch || descriptionMatch || tagsMatch;
+    });
+  }, [projects, searchTerm, language]);
+
+  const featuredProjects = filteredProjects.filter(project => project.featured);
+  const otherProjects = filteredProjects.filter(project => !project.featured);
 
   return (
     <div className="min-h-screen py-12 px-4">
@@ -27,6 +43,20 @@ const Projects = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             {t('projectsDescription')}
           </p>
+        </div>
+
+        {/* Search Bar */}
+        <div className="mb-12 max-w-md mx-auto">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              type="text"
+              placeholder={language === 'pt' ? 'Pesquisar projetos...' : 'Search projects...'}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
         </div>
 
         {/* Featured Projects */}
