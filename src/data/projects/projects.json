@@ -1,13 +1,13 @@
 [
   {
     "id": "1",
-    "title": "Data Pipeline Automation",
+    "title": "DBT with Google cloud",
     "description": {
-      "pt": "Sistema automatizado para processamento e análise de grandes volumes de dados usando Apache Airflow e Python.",
-      "en": "Automated system for processing and analyzing large volumes of data using Apache Airflow and Python."
+      "pt": "Implementação do dbt no Google Cloud para orquestração e transformação de dados.",
+      "en": "Implementing dbt on Google Cloud for data transformation and orchestration.)"
     },
-    "githubUrl": "https://github.com/kapoia/data-pipeline",
-    "tags": ["Python", "Apache Airflow", "ETL", "Data Engineering"],
+    "githubUrl": "https://github.com/ljukemura/dbt_gcp",
+    "tags": ["Python", "DBT", "ETL", "Analytics Engineering"],
     "featured": true
   },
   {
