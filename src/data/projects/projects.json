@@ -12,46 +12,35 @@
   },
   {
     "id": "2",
-    "title": "Sentiment Analysis API",
+    "title": "ScraperThings",
     "description": {
-      "pt": "API REST para análise de sentimentos em tempo real usando FastAPI e modelos de machine learning.",
-      "en": "REST API for real-time sentiment analysis using FastAPI and machine learning models."
+      "pt": "Repositório de scripts em Python para coleta de dados por web scraping e crawling, com exemplos práticos em diversas fontes.",
+      "en": "Python repository for data collection through web scraping and crawling, featuring practical examples from various sources."
     },
-    "githubUrl": "https://github.com/kapoia/sentiment-api",
-    "tags": ["FastAPI", "Machine Learning", "NLP", "Docker"],
+    "githubUrl": "https://github.com/ljukemura/ScraperThings",
+    "tags": ["Python", "Web Scraping", "ETL", "Data Engineering"],
     "featured": true
   },
   {
     "id": "3",
-    "title": "Interactive Sales Dashboard",
+    "title": "Advent of Code 2024",
     "description": {
-      "pt": "Dashboard interativo para visualização de dados de vendas construído com Streamlit e Plotly.",
-      "en": "Interactive dashboard for sales data visualization built with Streamlit and Plotly."
+      "pt": "Repositório com execícios do Advent of Code 2024.",
+      "en": "Repository with excercises of Advent of Code 2024."
     },
-    "githubUrl": "https://github.com/kapoia/sales-dashboard",
-    "tags": ["Streamlit", "Plotly", "Data Visualization", "Business Intelligence"],
+    "githubUrl": "https://github.com/ljukemura/AdventofCode_2024",
+    "tags": ["Python", "AoC"],
     "featured": false
   },
   {
     "id": "4",
-    "title": "Web Scraping Toolkit",
+    "title": "PowerBI Dashboards",
     "description": {
-      "pt": "Conjunto de ferramentas para web scraping ético e eficiente usando Python e Scrapy.",
-      "en": "Toolkit for ethical and efficient web scraping using Python and Scrapy."
+      "pt": "Dashboards para testes de visualizações",
+      "en": "Dashboards for testing visualizations"
     },
-    "githubUrl": "https://github.com/kapoia/scraping-toolkit",
-    "tags": ["Python", "Scrapy", "Web Scraping", "Data Collection"],
+    "githubUrl": "https://github.com/ljukemura/Power-BI-Projects?tab=readme-ov-file",
+    "tags": ["PowerBI", "Dataviz"],
     "featured": false
-  },
-  {
-    "id": "5",
-    "title": "Time Series Forecasting",
-    "description": {
-      "pt": "Modelos de previsão de séries temporais para análise de tendências e sazonalidade.",
-      "en": "Time series forecasting models for trend and seasonality analysis."
-    },
-    "githubUrl": "https://github.com/kapoia/time-series-forecast",
-    "tags": ["Python", "Time Series", "Forecasting", "Statistics"],
-    "featured": true
   }
 ]
