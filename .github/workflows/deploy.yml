@@ -43,4 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           force_orphan: true
-          # cname: # Adicione seu domínio personalizado aqui se tiver
+          cname: kapoias.com.br
