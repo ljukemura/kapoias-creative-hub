@@ -11,12 +11,23 @@
           sessionStorage.setItem("spa_redirect", redirect);
 
           const segments = window.location.pathname.split("/").filter(Boolean);
-          const base = segments.length > 0 ? `/${segments[0]}` : "";
-          const target = `${base}/`;
+          const hostname = window.location.hostname.toLowerCase();
+          const isGitHubPages = hostname.endsWith(".github.io");
 
-          window.location.replace(target || "/");
+          let base = sessionStorage.getItem("spa_base") || "/";
+
+          if (isGitHubPages && segments.length > 0) {
+            base = `/${segments[0]}/`;
+          }
+
+          if (!base.endsWith("/")) {
+            base = `${base}/`;
+          }
+
+          window.location.replace(base);
         } catch (error) {
           console.error("Unable to handle redirect", error);
+          window.location.replace("/");
         }
       })();
     </script>
@@ -25,7 +36,7 @@
     <noscript>
       <p>Esta página precisa de JavaScript para carregar corretamente.</p>
       <p>
-        <a href="/kapoias-creative-hub/">Voltar para a página inicial.</a>
+        <a href="/">Voltar para a página inicial.</a>
       </p>
     </noscript>
   </body>

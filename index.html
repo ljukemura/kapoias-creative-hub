@@ -21,6 +21,9 @@
     <div id="root"></div>
     <script>
       (function () {
+        const baseFromVite = "%BASE_URL%";
+        sessionStorage.setItem("spa_base", baseFromVite);
+
         const redirectPath = sessionStorage.getItem("spa_redirect");
         if (!redirectPath) {
           return;
