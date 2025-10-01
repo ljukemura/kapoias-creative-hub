@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kapoia's Blog - Explorando dados, projetos e ideias criativas</title>
+    <meta name="description" content="Blog pessoal de Kapoia sobre tecnologia, análise de dados, desenvolvimento e projetos criativos. Compartilhando conhecimento em português e inglês." />
+    <meta name="author" content="Kapoia" />
+
+    <meta property="og:title" content="Kapoia's Blog - Explorando dados, projetos e ideias criativas" />
+    <meta property="og:description" content="Blog pessoal sobre tecnologia, análise de dados, desenvolvimento e projetos criativos." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-1066360629333317">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1066360629333317"
+     crossorigin="anonymous"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6FS34KEG4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-S6FS34KEG4');
+    </script>
+    <script type="module" crossorigin src="/assets/index-BG9WDAKw.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D9GXDleH.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        const baseFromVite = "/";
+        sessionStorage.setItem("spa_base", baseFromVite);
+
+        const redirectPath = sessionStorage.getItem("spa_redirect");
+        if (!redirectPath) {
+          return;
+        }
+
+        sessionStorage.removeItem("spa_redirect");
+
+        const base = "/".replace(/\/$/, "");
+
+        try {
+          const url = new URL(redirectPath, window.location.origin);
+          let pathname = url.pathname;
+
+          if (base && pathname.startsWith(base)) {
+            pathname = pathname.slice(base.length);
+          }
+
+          const newPath = `${base}${pathname}${url.search}${url.hash}`;
+          window.history.replaceState(null, "", newPath || "/");
+        } catch (error) {
+          console.error("SPA redirect failed", error);
+        }
+      })();
+    </script>
+  </body>
+</html>
